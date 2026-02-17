@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+  <SelectDialog
+      id="packMatDialog"
+      title="Select Packaging Material"
+      items="{packVH>/Materials}"
+      search=".onPackMatSearch"
+      confirm=".onPackMatConfirm"
+      cancel=".onPackMatCancel">
+    <StandardListItem
+        title="{packVH>PackageMaterial}"
+        description="{packVH>PackageDesc}"
+        type="Active"/>
+  </SelectDialog>
+</core:FragmentDefinition>

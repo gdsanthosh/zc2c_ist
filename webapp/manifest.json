@@ -1,0 +1,159 @@
+{
+    "_version": "1.60.0",
+    "sap.app": {
+        "id": "com.zc2c.ist.zc2cist",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.19.1",
+            "toolsId": "7e7b6a49-8d5c-4a92-98f2-33fcfe4b796d"
+        },
+        "dataSources": {
+            "ZC2C_SB_PKGPROPOSAL_VAN": {
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZC2C_SB_PKGPROPOSAL_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/mainService/ZC2C_SB_PKGPROPOSAL_VAN.xml"
+                }
+            },
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZC2C_SB_PKGPROPOSAL/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZC2C_SB_PKGPROPOSAL_VAN"
+                    ],
+                    "localUri": "localService/mainService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZC2C_IST_UI_SRV": {
+                "uri": "/sap/opu/odata/sap/ZC2C_IST_UI_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/ZC2C_IST_UI_SRV/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.120.34",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ui.comp": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.zc2c.ist.zc2cist.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            },
+            "istBackend": {
+                "dataSource": "ZC2C_IST_UI_SRV",
+                "preload": true,
+                "settings": {}
+            }
+        },
+        "resources": {
+            "css": [{
+                "uri": "css/style.css"
+            }]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "transition": "slide",
+                "type": "View",
+                "viewType": "XML",
+                "path": "com.zc2c.ist.zc2cist.view",
+                "async": true,
+                "viewPath": "com.zc2c.ist.zc2cist.view"
+            },
+            "routes": [{
+                    "name": "PP_Wizard_Default",
+                    "pattern": "",
+                    "target": "PP_Wizard"
+                }, {
+                    "name": "RoutePP_List",
+                    "pattern": "list:?query:",
+                    "target": [
+                        "TargetPP_List"
+                    ]
+                },
+                {
+                    "pattern": "create-proposal",
+                    "name": "PP_Wizard",
+                    "target": "PP_Wizard"
+                },
+                {
+                    "name": "PP_Process",
+                    "pattern": "process/{PackageId}/{Plant}",
+                    "target": "PP_Process"
+                }
+            ],
+            "targets": {
+                "TargetPP_List": {
+                    "id": "PP_List",
+                    "name": "PP_List"
+                },
+                "PP_Wizard": {
+                    "viewId": "PP_Wizard",
+                    "viewName": "PP_Wizard"
+                },
+                "PP_Process": {
+                    "viewId": "PP_Process",
+                    "viewName": "PP_Process",
+                    "name": "PP_Process"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "com.zc2c.ist.zc2cist.view.App",
+            "type": "XML",
+            "id": "App",
+            "async": true
+        }
+    }
+}

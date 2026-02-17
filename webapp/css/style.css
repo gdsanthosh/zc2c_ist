@@ -1,0 +1,5 @@
+/* Enter your custom styles here */
+/* Hide the left "Review" button in this wizard only */
+.no-review .sapMWizardReviewBtn {
+    display: none !important;
+}

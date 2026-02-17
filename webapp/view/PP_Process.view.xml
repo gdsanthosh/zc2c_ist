@@ -1,0 +1,76 @@
+<mvc:View controllerName="com.zc2c.ist.zc2cist.controller.PP_Process"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form" displayBlock="true">
+
+    <Page id="page" title="Process Packaging Proposal" class="sapUiContentPadding" showNavButton="true" navButtonPress=".onNavBack">
+
+        <content>
+            <VBox renderType="Div" width="100%">
+
+                <HBox class="sapUiLargeMargin sapUiResponsiveContentPadding" justifyContent="SpaceBetween">
+                    <HBox alignItems="Center">
+                        <Text text="Package ID:" design="Bold" class="sapUiSmallMarginEnd"/>
+                        <Text text="{local>/Header/PackageId}"/>
+                    </HBox>
+
+                    <HBox alignItems="Center">
+                        <Text text="Plant:" design="Bold" class="sapUiSmallMarginEnd"/>
+                        <Text text="{local>/Header/PlantDisplay}"/>
+                    </HBox>
+                </HBox>
+
+                <form:SimpleForm id="frmProcess" editable="true" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="4" emptySpanL="1" emptySpanM="1" columnsL="2" columnsM="1">
+
+                    <Label text="Weight (Gross)"/>
+                    <Input value="{local>/Process/WeightGross}" type="Number" />
+
+                    <Label text="Weight (Dry Ice)"/>
+                    <Input value="{local>/Process/WeightDryIce}" type="Number" />
+
+                    <Label text="Units"/>
+                    <Input value="{local>/Process/WeightUnits}" placeholder="LB / KG" editable="false"/>
+
+                    <Label text="Packaging Material"/>
+                    <HBox>
+                        <Input value="{local>/Process/PackageMaterial}" width="100%"/>
+                        <!-- This calls the helper inherited from BaseController -->
+                        <Button icon="sap-icon://value-help" press=".onVH_PackageMaterial" tooltip="Search Packaging Material" />
+                    </HBox>
+
+                    <Label text="Comments"/>
+                    <TextArea value="{local>/Process/Comments}" rows="3" />
+                </form:SimpleForm>
+
+                <Toolbar class="sapUiTinyMarginTop">
+                    <Title text="Assigned Containers" level="H3"/>
+                    <ToolbarSpacer/>
+                    <Button id="btnGetSamples" text="Get Samples" enabled="{= ${local>/CanGetSamples} === true }" press=".onGetSamplesFromProposal"/>
+                    <Button id="btnProcess" type="Emphasized" text="Process Packaging Proposal" press=".onProcessProposal"/>
+                </Toolbar>
+
+                <Table id="tblProposalItems" mode="SingleSelectLeft" items="{path: 'local>/ProposalItems'}" selectionChange=".onSelectProposalItem">
+
+                    <columns>
+                        <Column>
+                            <Text text="Container ID"/>
+                        </Column>
+                        <Column>
+                            <Text text="Inspection ID"/>
+                        </Column>
+                    </columns>
+
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{local>ContainerId}"/>
+                                <Text text="{local>ConInsId}"/>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

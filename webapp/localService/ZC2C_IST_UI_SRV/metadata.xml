@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZC2C_IST_UI_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ContainerItems" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Plant"/>
+                    <PropertyRef Name="ContainerId"/>
+                    <PropertyRef Name="ConInsId"/>
+                </Key>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="ContainerId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Container Id" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ConInsId" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Container Instance I" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ContainerRow" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="No of Container Samp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrderId" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="OrderId" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CarrierCode" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Carrier Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ShippingType" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Shipping Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AccountName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Account Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SampleType" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Sample Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SampleId" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Sample Id" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ContainerColumn" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Container Column" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LabSource" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Lab Source" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExternalSpecimenId" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="External Specimen Id" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Comments" Type="Edm.String" Nullable="false" MaxLength="72" sap:unicode="false" sap:label="Comment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SamplePull" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Sample Pulled" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PackagingMaterials" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PackageMaterial"/>
+                </Key>
+                <Property Name="PackageMaterial" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="SU Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PackageDesc" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Package descr." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PackagingProposalHeader" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PackageId"/>
+                </Key>
+                <Property Name="PackageId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Package Proposal ID" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="WeightGross" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="3" sap:unicode="false" sap:label="Total Weight" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WeightDryIce" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="3" sap:unicode="false" sap:label="Total Weight" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WeightUnits" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Unit of Weight" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Comments" Type="Edm.String" Nullable="false" MaxLength="72" sap:unicode="false" sap:label="Comment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PackageMaterial" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="SU Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="IST Packaging Propos" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Created By" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <NavigationProperty Name="toPackagingProposalItem" Relationship="ZC2C_IST_UI_SRV.PackagingProposalHeader_PackagingProItem" FromRole="FromRole_PackagingProposalHeader_PackagingProItem" ToRole="ToRole_PackagingProposalHeader_PackagingProItem"/>
+                <NavigationProperty Name="toPackagingProposalMessagelog" Relationship="ZC2C_IST_UI_SRV.PackagingProposalHeader_MessageLog" FromRole="FromRole_PackagingProposalHeader_MessageLog" ToRole="ToRole_PackagingProposalHeader_MessageLog"/>
+            </EntityType>
+            <EntityType Name="PackagingProposalItem" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PackageId"/>
+                </Key>
+                <Property Name="PackageId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Package Proposal ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ConInsId" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Container Instance I" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ContainerId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Container Id" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PlantUser" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Uname"/>
+                </Key>
+                <Property Name="Uname" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="User Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="150" sap:unicode="false" sap:label="Message Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="PlantDetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Plant"/>
+                </Key>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Plantname" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Name 1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ContainerHeader" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Plant"/>
+                    <PropertyRef Name="ContainerId"/>
+                    <PropertyRef Name="ConInsId"/>
+                </Key>
+                <Property Name="Plant" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ContainerId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Container Id" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ConInsId" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Container Instance I" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ContainerTotal" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Container Total" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Samplesreceived" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Internal Sample Rece" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PackageId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Package Proposal ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Comments" Type="Edm.String" Nullable="false" MaxLength="72" sap:unicode="false" sap:label="Comment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="IST Status informati" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MsgTyp" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Message Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="150" sap:unicode="false" sap:label="Message Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="toContainerItems" Relationship="ZC2C_IST_UI_SRV.ContainerHeader_ContainerItems_Ass" FromRole="FromRole_ContainerHeader_ContainerItems_Ass" ToRole="ToRole_ContainerHeader_ContainerItems_Ass"/>
+            </EntityType>
+            <EntityType Name="MessageLogDetails" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PackageId"/>
+                </Key>
+                <Property Name="MsgTyp" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Message Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="150" sap:unicode="false" sap:label="Message Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PackageId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Package Proposal ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vbeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Delivery" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="ContainerHeader_ContainerItems_Ass" sap:content-version="1">
+                <End Type="ZC2C_IST_UI_SRV.ContainerHeader" Multiplicity="1" Role="FromRole_ContainerHeader_ContainerItems_Ass"/>
+                <End Type="ZC2C_IST_UI_SRV.ContainerItems" Multiplicity="*" Role="ToRole_ContainerHeader_ContainerItems_Ass"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ContainerHeader_ContainerItems_Ass">
+                        <PropertyRef Name="Plant"/>
+                        <PropertyRef Name="ContainerId"/>
+                        <PropertyRef Name="ConInsId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ContainerHeader_ContainerItems_Ass">
+                        <PropertyRef Name="Plant"/>
+                        <PropertyRef Name="ContainerId"/>
+                        <PropertyRef Name="ConInsId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PackagingProposalHeader_PackagingProItem" sap:content-version="1">
+                <End Type="ZC2C_IST_UI_SRV.PackagingProposalHeader" Multiplicity="1" Role="FromRole_PackagingProposalHeader_PackagingProItem"/>
+                <End Type="ZC2C_IST_UI_SRV.PackagingProposalItem" Multiplicity="*" Role="ToRole_PackagingProposalHeader_PackagingProItem"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PackagingProposalHeader_PackagingProItem">
+                        <PropertyRef Name="PackageId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PackagingProposalHeader_PackagingProItem">
+                        <PropertyRef Name="PackageId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PackagingProposalHeader_MessageLog" sap:content-version="1">
+                <End Type="ZC2C_IST_UI_SRV.PackagingProposalHeader" Multiplicity="1" Role="FromRole_PackagingProposalHeader_MessageLog"/>
+                <End Type="ZC2C_IST_UI_SRV.MessageLogDetails" Multiplicity="*" Role="ToRole_PackagingProposalHeader_MessageLog"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PackagingProposalHeader_MessageLog">
+                        <PropertyRef Name="PackageId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PackagingProposalHeader_MessageLog">
+                        <PropertyRef Name="PackageId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZC2C_IST_UI_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ContainerItemsSet" EntityType="ZC2C_IST_UI_SRV.ContainerItems" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PackagingMaterialsSet" EntityType="ZC2C_IST_UI_SRV.PackagingMaterials" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PackagingProposalHeaderSet" EntityType="ZC2C_IST_UI_SRV.PackagingProposalHeader" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PackagingProposalItemSet" EntityType="ZC2C_IST_UI_SRV.PackagingProposalItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PlantUserSet" EntityType="ZC2C_IST_UI_SRV.PlantUser" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="PlantDetailsSet" EntityType="ZC2C_IST_UI_SRV.PlantDetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ContainerHeaderSet" EntityType="ZC2C_IST_UI_SRV.ContainerHeader" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MessageLogDetailsSet" EntityType="ZC2C_IST_UI_SRV.MessageLogDetails" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="PackagingProposalHeader_MessageLogSet" Association="ZC2C_IST_UI_SRV.PackagingProposalHeader_MessageLog" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PackagingProposalHeaderSet" Role="FromRole_PackagingProposalHeader_MessageLog"/>
+                    <End EntitySet="MessageLogDetailsSet" Role="ToRole_PackagingProposalHeader_MessageLog"/>
+                </AssociationSet>
+                <AssociationSet Name="ContainerHeader_ContainerItems_AssSet" Association="ZC2C_IST_UI_SRV.ContainerHeader_ContainerItems_Ass" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ContainerHeaderSet" Role="FromRole_ContainerHeader_ContainerItems_Ass"/>
+                    <End EntitySet="ContainerItemsSet" Role="ToRole_ContainerHeader_ContainerItems_Ass"/>
+                </AssociationSet>
+                <AssociationSet Name="PackagingProposalHeader_PackagingProISet" Association="ZC2C_IST_UI_SRV.PackagingProposalHeader_PackagingProItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="PackagingProposalHeaderSet" Role="FromRole_PackagingProposalHeader_PackagingProItem"/>
+                    <End EntitySet="PackagingProposalItemSet" Role="ToRole_PackagingProposalHeader_PackagingProItem"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <atom:link rel="self" href="http://vh2dpas.exactsciences.net:8000/sap/opu/odata/sap/ZC2C_IST_UI_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://vh2dpas.exactsciences.net:8000/sap/opu/odata/sap/ZC2C_IST_UI_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

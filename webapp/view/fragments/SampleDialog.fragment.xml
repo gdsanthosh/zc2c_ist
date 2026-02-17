@@ -1,0 +1,65 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+  <Dialog id="sampleDialog"
+          title="Container Samples"
+          contentWidth="600px"
+          draggable="true"
+          resizable="true"
+          class="sapUiNoContentPadding">
+
+    <Toolbar>
+      <ToolbarSpacer />
+      <Button id="btnPullSample"
+              text="Pull Sample"
+              type="Emphasized"
+              enabled="{= !!${localSamples>/SelectedSampleId} &amp;&amp; !!${localSamples>/PullComments} }"
+              press=".onPullSample"/>
+    </Toolbar>
+
+    <!-- Inline message area -->
+    <MessageStrip id="msPull"
+                  text="{localSamples>/MessageText}"
+                  type="{localSamples>/MessageType}"   
+                  showIcon="true"
+                  showCloseButton="true"
+                  visible="{localSamples>/MessageVisible}"
+                  close=".onCloseSamplesMessage" />
+
+    <Table id="tblSamples"
+           inset="false"
+           mode="SingleSelectLeft"
+           items="{localSamples>/Samples}"
+           selectionChange=".onSelectSample">
+      <columns>
+        <Column><Text text="Container"/></Column>
+        <Column><Text text="Sample ID"/></Column>
+        <Column><Text text="Order"/></Column>
+        <Column><Text text="Specimen"/></Column>
+      </columns>
+      <items>
+        <ColumnListItem>
+          <cells>
+            <Text text="{localSamples>ContainerId}"/>
+            <Text text="{localSamples>SampleId}"/>
+            <Text text="{localSamples>OrderId}"/>
+            <Text text="{localSamples>ExternalSpecimenId}"/>
+          </cells>
+        </ColumnListItem>
+      </items>
+    </Table>
+
+    <!-- Comments (required) -->
+    <VBox class="sapUiSmallMargin">
+      <Label text="Comments (required)" labelFor="inpPullComments"/>
+      <TextArea id="inpPullComments"
+                value="{localSamples>/PullComments}"
+                rows="3"
+                width="100%"
+                valueState="{localSamples>/PullCommentsState}"
+                valueStateText="{localSamples>/PullCommentsStateText}"/>
+    </VBox>
+
+    <endButton>
+      <Button text="Close" press=".onCloseSampleDialog"/>
+    </endButton>
+  </Dialog>
+</core:FragmentDefinition>

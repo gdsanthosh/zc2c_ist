@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: com.zc2c.ist.zc2cist
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: H2D300
+          url: http://vh2dpas.exactsciences.net:8000
+          client: '300'
+        app:
+          name: ZC2C_IST
+          description: Internal Sample Transfer App
+          package: Z_FIORICONTENT
+          transport: H2DK906626
+        exclude:
+          - /test/

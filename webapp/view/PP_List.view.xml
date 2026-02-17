@@ -1,0 +1,28 @@
+<mvc:View controllerName="com.zc2c.ist.zc2cist.controller.PP_List"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable" displayBlock="true">
+    <Page id="page" title="Packaging Proposals" class="sapUiContentPadding">
+        <content>
+
+            <!-- Smart Filter Bar -->
+            <smartFilterBar:SmartFilterBar id="sfbar" entitySet="PackagingProposal" persistencyKey="PP_List_Filter" useDateRangeType="true" smartVariant="page" enableBasicSearch="true" liveMode="true" header="Filters">
+            </smartFilterBar:SmartFilterBar>
+
+            <!-- Smart Table -->
+            <smartTable:SmartTable id="stbl" tableType="ResponsiveTable" header="Packaging Proposals" smartFilterId="sfbar" entitySet="PackagingProposal" enableExport="true" useVariantManagement="true" demandPopin="true" initiallyVisibleFields="PackageId,Plant,Status,CreatedOn,CreatedBy" enableAutoBinding="true" initialise=".onSmartInit" class="sapUiResponsiveContentPadding">
+
+                <smartTable:customToolbar>
+                    <Toolbar>
+                        <ToolbarSpacer/>
+                        <Button id="btnStart" text="Start Proposal" type="Emphasized" press=".onCreateProposal"/>
+                        <Button id="btnOpen" text="Open Proposal" press=".onProcessProposal" enabled="false"/>
+                    </Toolbar>
+                </smartTable:customToolbar>
+
+            </smartTable:SmartTable>
+
+        </content>
+    </Page>
+</mvc:View>
