@@ -607,6 +607,10 @@ sap.ui.define([
             const fDryIce = parseFloat(P.WeightDryIce);
             const fGrossVal = Number.isNaN(fGross) ? 0 : fGross;
             const fDryIceVal = Number.isNaN(fDryIce) ? 0 : fDryIce;
+            if (fGrossVal <= 0) {
+                MessageBox.error(this.getText("GROSS_WEIGHT_REQUIRED"));
+                return;
+            }
             if (fDryIceVal > fGrossVal) {
                 MessageBox.error(this.getText("DRY_ICE_GT_GROSS"));
                 return;
@@ -626,11 +630,14 @@ sap.ui.define([
                 }));
             }
 
+            const sDryIce = (P.WeightDryIce == null || String(P.WeightDryIce).trim() === "") ? "0.000" : P.WeightDryIce;
+            this.oLocal.setProperty("/Process/WeightDryIce", sDryIce);
+
             const payload = {
                 PackageId: sPackageId,
                 Plant: sPlant,
                 WeightGross: P.WeightGross || "0.000",
-                WeightDryIce: P.WeightDryIce || "0.000",
+                WeightDryIce: sDryIce,
                 WeightUnits: P.WeightUnits || "",
                 Comments: (P.Comments === "" || P.Comments == null) ? " " : P.Comments,
                 PackageMaterial: P.PackageMaterial || " ",
