@@ -3,21 +3,27 @@
     xmlns="sap.m"
     xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
     xmlns:smartTable="sap.ui.comp.smarttable" displayBlock="true">
-    <Page id="page" title="Packaging Proposals" class="sapUiContentPadding">
+    <Page id="page" title="{i18n>ppList.pageTitle}" class="sapUiContentPadding">
+        <customHeader>
+            <Toolbar>
+                <Title text="{i18n>ppList.pageTitle}"/>
+                <ToolbarSpacer/>
+                <Button id="btnStart" text="{i18n>ppList.startNewShipment}" type="Emphasized" press=".onCreateProposal"/>
+            </Toolbar>
+        </customHeader>
         <content>
 
             <!-- Smart Filter Bar -->
-            <smartFilterBar:SmartFilterBar id="sfbar" entitySet="PackagingProposal" persistencyKey="PP_List_Filter" useDateRangeType="true" smartVariant="page" enableBasicSearch="true" liveMode="true" header="Filters">
+            <smartFilterBar:SmartFilterBar id="sfbar" entitySet="PackagingProposal" persistencyKey="PP_List_Filter" useDateRangeType="true" smartVariant="page" enableBasicSearch="true" liveMode="true" header="{i18n>ppList.filters}">
             </smartFilterBar:SmartFilterBar>
 
             <!-- Smart Table -->
-            <smartTable:SmartTable id="stbl" tableType="ResponsiveTable" header="Packaging Proposals" smartFilterId="sfbar" entitySet="PackagingProposal" enableExport="true" useVariantManagement="true" demandPopin="true" initiallyVisibleFields="PackageId,Plant,Status,CreatedOn,CreatedBy" enableAutoBinding="true" initialise=".onSmartInit" class="sapUiResponsiveContentPadding">
+            <smartTable:SmartTable id="stbl" tableType="ResponsiveTable" header="{i18n>ppList.shipmentsHeader}" smartFilterId="sfbar" entitySet="PackagingProposal" enableExport="true" useVariantManagement="true" demandPopin="true" initiallyVisibleFields="PackageId,Plant,Status,CreatedOn,CreatedBy" enableAutoBinding="true" initialise=".onSmartInit" class="sapUiResponsiveContentPadding">
 
                 <smartTable:customToolbar>
                     <Toolbar>
                         <ToolbarSpacer/>
-                        <Button id="btnStart" text="Start Proposal" type="Emphasized" press=".onCreateProposal"/>
-                        <Button id="btnOpen" text="Open Proposal" press=".onProcessProposal" enabled="false"/>
+                        <Button id="btnOpen" text="{i18n>ppList.goToShipment}" press=".onProcessProposal" enabled="false"/>
                     </Toolbar>
                 </smartTable:customToolbar>
 

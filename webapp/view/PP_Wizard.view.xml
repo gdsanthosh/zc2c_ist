@@ -3,80 +3,83 @@
     xmlns:f="sap.ui.layout.form" displayBlock="true"
     xmlns:core="sap.ui.core">
 
-    <Page id="wizPage" title="Create Packaging Proposal" class="sapUiContentPadding" showNavButton="true" navButtonPress=".onNavBack">
+    <Page id="wizPage" title="{i18n>ppWizard.pageTitle}" class="sapUiContentPadding" showNavButton="true" navButtonPress=".onNavBack">
         <content>
             <Wizard id="wiz" stepActivate=".onStepActivate"  finishButtonText="" >
 
                 <!-- STEP 1: Plant -->
-                <WizardStep id="step1" title="Select Plant">
+                <WizardStep id="step1" title="{i18n>ppWizard.step1Title}">
                     <f:SimpleForm id="frmPlant" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" singleContainerFullSize="false">
 
                         <f:content>
                             <!-- Header -->
                             <Toolbar>
-                                <Title text="Plant Assignment" level="H3"/>
-                                <ToolbarSpacer/>
-                                <Button text="{i18n>viewOpenProposals}" icon="sap-icon://list" type="Transparent" press=".onGoToOpenProposals"/>
+                                <Title text="{i18n>ppWizard.plantAssignmentTitle}" level="H3"/>
                             </Toolbar>
 
                             <!-- Assigned Plant (read-only) -->
-                            <Label text="Assigned Plant"/>
+                            <Label text="{i18n>ppWizard.assignedPlant}"/>
                             <HBox>
                                 <Text text="{= ${local>/Plant} ? ${local>/Plant} + ' - ' + (${local>/PlantName} || '') : '' }" class="sapUiSmallMarginEnd"/>
                             </HBox>
 
                             <!-- Select Plant dropdown -->
-                            <Label text="Select Plant" visible="{= !${local>/Plant} }"/>
+                            <Label text="{i18n>ppWizard.selectPlant}" visible="{= !${local>/Plant} }"/>
                             <HBox visible="{= !${local>/Plant} }">
                                 <ComboBox id="selPlant" width="15rem" selectedKey="{local>/SelectedPlant}" items="{plants>/}">
                                     <core:ListItem xmlns:core="sap.ui.core" key="{plants>Plant}" text="{plants>Plant} - {plants>Plantname}"/>
                                 </ComboBox>
-                                <Button id="btnAssignPlant" text="Assign Plant" type="Emphasized" enabled="{= !!${local>/SelectedPlant} }" press=".onAssignPlant" class="sapUiTinyMarginBegin"/>
+                                <Button id="btnAssignPlant" text="{i18n>ppWizard.assignPlant}" type="Emphasized" enabled="{= !!${local>/SelectedPlant} }" press=".onAssignPlant" class="sapUiTinyMarginBegin"/>
                             </HBox>
                         </f:content>
                     </f:SimpleForm>
                 </WizardStep>
 
                 <!-- STEP 2: Containers -->
-                <WizardStep id="step2" title="Select Containers" validated="false">
+                <WizardStep id="step2" title="{i18n>ppWizard.step2Title}" validated="false">
                     <VBox class="sapUiSmallMarginTop sapUiSmallMarginBottom" width="100%">
                         <Toolbar>
-                            <Title text="Containers for plant {local>/Plant}" level="H3" />
+                            
                             <ToolbarSpacer/>
-                            <Label text="Account" labelFor="cbAccountFilter" class="sapUiSmallMarginEnd"/>
-                            <ComboBox id="cbAccountFilter" width="16rem" items="{local>/AccountNames}" selectedKey="{local>/SelectedAccount}" selectionChange=".onAccountFilterChange" placeholder="All Accounts">
+                            <Button text="{i18n>ppWizard.viewShipmentHistory}" icon="sap-icon://list" type="Transparent" press=".onGoToOpenProposals"/>
+                        </Toolbar>
+                        <Toolbar>
+                            <Title text="{= ${i18n>ppWizard.containersForPlant} + ' ' + ${local>/Plant} }" level="H3" />
+                            <ToolbarSpacer/>
+                            <Label text="{i18n>ppWizard.account}" labelFor="cbAccountFilter" class="sapUiSmallMarginEnd"/>
+                            <ComboBox id="cbAccountFilter" width="16rem" items="{local>/AccountNames}" selectedKey="{local>/SelectedAccount}" selectionChange=".onAccountFilterChange" placeholder="{i18n>ppWizard.allAccounts}">
                                 <core:Item key="{local>Key}" text="{local>Name}"/>
                             </ComboBox>
-                            <Button text="Get Samples" press=".onGetSamples" enabled="{local>/CanGetSamples}"/>
-                            <Button id="btnAbandonStep2" text="Abandon Container" press=".onAbandonSelectedContainersStep2" enabled="{= ${local>/SelectedContainerCount} > 0 }" class="sapUiTinyMarginBegin"/>
-                            <Button text="Create Packaging Proposal" type="Emphasized" press=".onCreateProposal" enabled="{local>/CanCreateProposal}"/>
+                            <Button text="{i18n>ppWizard.getSamples}" press=".onGetSamples" enabled="{local>/CanGetSamples}"/>
+                            <Button id="btnAbandonStep2" text="{i18n>ppWizard.abandonContainer}" press=".onAbandonSelectedContainersStep2" enabled="{= ${local>/SelectedContainerCount} > 0 }" class="sapUiTinyMarginBegin"/>
+                            <Button text="{i18n>ppWizard.packContainer}" type="Emphasized" press=".onCreateProposal" enabled="{local>/CanCreateProposal}"/>
                         </Toolbar>
 
                         <Table id="tblContainers" mode="MultiSelect" items="{path: 'local>/Containers'}" selectionChange=".onSelectRow" rememberSelections="false">
                             <columns>
                                 <Column>
-                                    <Text text="Container Id"/>
+                                    <Text text="{i18n>ppWizard.containerId}"/>
                                 </Column>
                                 <Column>
-                                    <Text text="Instance(unique id)"/>
+                                    <Text text="{i18n>ppWizard.instanceUniqueId}"/>
                                 </Column>
                                 <Column>
-                                    <Text text="Account"/>
+                                    <Text text="{i18n>ppWizard.account}"/>
                                 </Column>
                                 <Column>
-                                    <Text text="Samples Received"/>
+                                    <Text text="{i18n>ppWizard.samplesReceived}"/>
                                 </Column>
                                 <Column>
-                                    <Text text="Total Samples"/>
+                                    <Text text="{i18n>ppWizard.totalSamples}"/>
                                 </Column>
                                 <Column>
-                                    <Text text="Pulled Samples"/>
+                                    <Text text="{i18n>ppWizard.pulledSamples}"/>
                                 </Column>
                                 <Column visible="false">
-                                    <Text text="Status"/>
+                                    <Text text="{i18n>ppWizard.status}"/>
                                 </Column>
                                 <Column>
-                                    <Text text="Status"/>
+                                    <Text text="{i18n>ppWizard.status}"/>
                                 </Column>
                             </columns>
                             <items>
@@ -98,22 +101,22 @@
                 </WizardStep>
 
                 <!-- STEP 3: Review & Process -->
-                <WizardStep id="step3" title="Process Proposal" validated="false" >
+                <WizardStep id="step3" title="{i18n>ppWizard.step3Title}" validated="false" >
                     <VBox class="sapUiSmallMarginTop sapUiSmallMarginBottom" width="100%">
                         <Toolbar>
-                            <Title text="Created Package ID: {local>/PackageId}" level="H3"/>
+                            <Title text="{= ${i18n>ppWizard.createdPackageId} + ' ' + ${local>/PackageId} }" level="H3"/>
                             <ToolbarSpacer/>
                             <!-- NEW: Get Samples button for Proposal Items -->
-                            <Button id="btnGetSamplesStep3" text="Get Samples" press=".onGetSamplesFromProposal" enabled="{local>/CanGetSamplesStep3}" />
-                            <Button id="btnUnassignStep3" text="Unassign Container" press=".onUnassignContainer" enabled="{= ${local>/SelectedProposalCount} > 0 }" class="sapUiTinyMarginBegin"/>
+                            <Button id="btnGetSamplesStep3" text="{i18n>ppWizard.getSamples}" press=".onGetSamplesFromProposal" enabled="{local>/CanGetSamplesStep3}" />
+                            <Button id="btnUnassignStep3" text="{i18n>ppWizard.unassignContainer}" press=".onUnassignContainer" enabled="{= ${local>/SelectedProposalCount} > 0 }" class="sapUiTinyMarginBegin"/>
                         </Toolbar>
                         <Table id="tblProposalItems" items="{local>/ProposalItems}" mode="MultiSelect" rememberSelections="false" selectionChange=".onSelectProposalItem">
                             <columns>
                                 <Column>
-                                    <Text text="Container Id"/>
+                                    <Text text="{i18n>ppWizard.containerId}"/>
                                 </Column>
                                 <Column>
-                                    <Text text="Instance(ConInsId)"/>
+                                    <Text text="{i18n>ppWizard.instanceConInsId}"/>
                                 </Column>
                             </columns>
                             <items>
@@ -127,25 +130,25 @@
                         </Table>
 
                         <Toolbar class="sapUiTinyMarginTop">
-                            <Title text="Enter Processing Details" level="H4"/>
+                            <Title text="{i18n>ppWizard.processingDetailsTitle}" level="H4"/>
                         </Toolbar>
                         <f:SimpleForm editable="true" layout="ResponsiveGridLayout">
-                            <Label text="Weight Gross"/>
+                            <Label text="{i18n>ppWizard.weightGross}"/>
                             <Input value="{local>/Process/WeightGross}" type="Number"/>
-                            <Label text="Weight Dry Ice"/>
+                            <Label text="{i18n>ppWizard.weightDryIce}"/>
                             <Input value="{local>/Process/WeightDryIce}" type="Number"/>
-                            <Label text="Weight Units"/>
+                            <Label text="{i18n>ppWizard.weightUnits}"/>
                             <Input value="{local>/Process/WeightUnits}" editable="false"/>
-                            <Label text="Package Material"/>
+                            <Label text="{i18n>ppWizard.packageMaterial}"/>
                             <!--<Input value="{local>/Process/PackageMaterial}"/>-->
-                            <Input value="{local>/Process/PackageMaterial}" showValueHelp="true" valueHelpRequest=".onVH_PackageMaterial" placeholder="Choose…"/>
-                            <Label text="Comments"/>
+                            <Input value="{local>/Process/PackageMaterial}" showValueHelp="true" valueHelpRequest=".onVH_PackageMaterial" placeholder="{i18n>ppWizard.choosePlaceholder}"/>
+                            <Label text="{i18n>ppWizard.comments}"/>
                             <TextArea value="{local>/Process/Comments}" rows="3"/>
                         </f:SimpleForm>
 
                         <Toolbar class="sapUiTinyMarginTop">
                             <ToolbarSpacer/>
-                            <Button text="Process Packaging Proposal" type="Emphasized" press=".onProcessProposal" enabled="{= !!${local>/PackageId} }"/>
+                            <Button text="{i18n>ppWizard.processProposal}" type="Emphasized" press=".onProcessProposal" enabled="{= !!${local>/PackageId} }"/>
                         </Toolbar>
                     </VBox>
                 </WizardStep>
