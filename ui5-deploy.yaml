@@ -21,6 +21,6 @@ builder:
           name: ZC2C_IST
           description: Internal Sample Transfer App
           package: Z_FIORICONTENT
-          transport: H2DK906626
+          transport: H2DK906946
         exclude:
           - /test/
